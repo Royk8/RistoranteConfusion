@@ -20,6 +20,7 @@ class DishDetail extends Component{
                     </CardBody>
                 </Card>
             </div>
+
         );
     }
 
@@ -59,9 +60,11 @@ class DishDetail extends Component{
         //console.log(this.props.dish)
         if(this.props.dish != null){
             return(
-                <div className="row">
-                    {this.renderDish(this.props.dish)}
-                    {this.renderComments(this.props.dish)}
+                <div className = 'container'>
+                    <div className="row">
+                            {this.renderDish(this.props.dish)}                        
+                            {this.renderComments(this.props.dish)}
+                    </div>
                 </div>
             );
         }else{
