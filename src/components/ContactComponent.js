@@ -86,7 +86,7 @@ class Contact extends Component{
                                         model=".firstname"
                                         show="touched"
                                         messages={{
-                                            required:'Required',
+                                            required:'Required ',
                                             minLenght: 'Must be greater than 2 characters',
                                             maxLength: 'Must be 15 characters or less'
                                         }}
@@ -107,7 +107,7 @@ class Contact extends Component{
                                         model=".lastname"
                                         show="touched"
                                         messages={{
-                                            required:'Required',
+                                            required:'Required ',
                                             minLenght: 'Must be greater than 2 characters',
                                             maxLength: 'Must be 15 characters or less'
                                         }}
@@ -128,10 +128,10 @@ class Contact extends Component{
                                         model=".telnum"
                                         show="touched"
                                         messages={{
-                                            required:'Required',
-                                            minLenght: 'Must be greater than 2 numbers',
-                                            maxLength: 'Must be 15 numbers or less',
-                                            isNumber: 'Must be a number'
+                                            required:'Required ',
+                                            minLenght: 'Must be greater than 2 numbers ',
+                                            maxLength: 'Must be 15 numbers or less ',
+                                            isNumber: 'Must be a number '
                                         }}/>
                                 </Col>
                             </Row>
@@ -149,7 +149,7 @@ class Contact extends Component{
                                         model=".email"
                                         show="touched"
                                         messages={{
-                                            required: 'Required',
+                                            required: 'Required ',
                                             validEmail: 'Invalid Email Adress'
                                         }}/>
                                 </Col>
