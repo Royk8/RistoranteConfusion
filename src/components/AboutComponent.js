@@ -1,36 +1,62 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
+import { Fade, Stagger } from 'react-animation-components';
 
-function RenderLeader({ leader }){
-    console.log(leader.image);
-    return(
+function RenderLeader({ leader }) {
+    return (
         <div className='row'>
             <Media>
                 <Media left>
-                    <Media object src={leader.image} alt={leader.name} />
-                </Media>            
+                    <Media object src={baseUrl + leader.image} alt={leader.name} />
+                </Media>
                 <Media body className="ml-5">
                     <Media heading>
                         {leader.name}
                     </Media>
                     <h5>{leader.designation}</h5>
                     <p>{leader.description}</p>
-                </Media> 
+                </Media>
             </Media>
         </div>
     );
 }
 
-function About(props) {
-
-    const leaders = props.leaders.map((leader) => {
+/** 4th Assignment */
+function RenderLeadersList({ leaders, isLoading, errMess }) {
+    if (isLoading) {
         return (
-            <RenderLeader leader = {leader} />
+            <div className='container'>
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
         );
-    });
+    } else if (errMess) {
+        return (
+            <div className='container'>
+                <div className="row">
+                    <h4>{errMess}</h4>
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <Stagger in>
+                {leaders.map(leader => (
+                    <Fade in key={leader.id}>
+                        <RenderLeader key={leader.id} leader={leader} />
+                    </Fade>
+                ))}
+            </Stagger>
+        );
+    }
+}
 
-    return(
+function About(props) {
+    return (
         <div className="container">
             <div className="row">
                 <Breadcrumb>
@@ -40,7 +66,7 @@ function About(props) {
                 <div className="col-12">
                     <h3>About Us</h3>
                     <hr />
-                </div>                
+                </div>
             </div>
             <div className="row row-content">
                 <div className="col-12 col-md-6">
@@ -70,10 +96,10 @@ function About(props) {
                         <CardBody className="bg-faded">
                             <blockquote className="blockquote">
                                 <p className="mb-0">You better cut the pizza in four pieces because
-                                    I'm not hungry enough to eat six.</p>
+                                        I'm not hungry enough to eat six.</p>
                                 <footer className="blockquote-footer">Yogi Berra,
-                                <cite title="Source Title">The Wit and Wisdom of Yogi Berra,
-                                    P. Pepe, Diversion Books, 2014</cite>
+                                    <cite title="Source Title">The Wit and Wisdom of Yogi Berra,
+                                        P. Pepe, Diversion Books, 2014</cite>
                                 </footer>
                             </blockquote>
                         </CardBody>
@@ -85,13 +111,15 @@ function About(props) {
                     <h2>Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
-                    <Media list>
-                        {leaders}
-                    </Media>
+                    {RenderLeadersList({
+                        leaders: props.leaders.leaders,
+                        isLoading: props.leaders.isLoading,
+                        errMess: props.leaders.errMess
+                    })}
                 </div>
             </div>
         </div>
     );
 }
 
-export default About;    
+export default About;
