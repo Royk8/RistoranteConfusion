@@ -207,8 +207,6 @@ export const postFeedback = (firstname, lastname, telnum, email, agree, contactT
     })
         .then(response => {
             if(response.ok){
-                console.log(response);
-                
                 return response;
             } else {
                 var error = new Error('Error ' + response.status + ': ' + response.statusText);

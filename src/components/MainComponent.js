@@ -30,14 +30,9 @@ const mapDispatchToProps = (dispatch) => ({
     fetchComments: () => {dispatch(fetchComments())},
     fetchPromos: () => {dispatch(fetchPromos())},
     fetchLeaders: () => {dispatch(fetchLeaders())}
-
 });
 
 class Main extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount(){
         this.props.fetchDishes();
